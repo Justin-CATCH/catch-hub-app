@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, ScrollView, Button } from "react-native";
 import Markdown from "react-native-markdown-renderer";
 
