@@ -8,7 +8,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { MOCK_LIBRARY_DATA } from "../mock-data";
 import { theme } from "../theme";
 import { Card } from "react-native-paper";
+
 const Stack = createStackNavigator();
+
+const icons = {
+  "brown-bag": require(`../icons/brown-bag.png`),
+  file: require(`../icons/file.png`),
+};
 
 export default () => {
   return (
@@ -35,7 +41,7 @@ function LibraryFileScreen({ route, navigation }) {
 
   return (
     <ScrollView>
-      <View>
+      <View style={{ paddingLeft: 12 }}>
         <View>
           <Button
             onPress={() => {
@@ -56,34 +62,32 @@ function LibraryRootScreen({ route, navigation }) {
   if (folder !== null) {
     return (
       <ScrollView>
-        <View>
-          <View>
-            <Button
+        <Button
+          onPress={() => {
+            setFolder(null);
+          }}
+          title="Back"
+        />
+        <Flex
+          sx={{
+            flexWrap: "wrap",
+            flex: 1,
+            justifyContent: "flex-start",
+          }}
+        >
+          {folder.children.map((file) => (
+            <Folder
+              key={file.name}
+              folder={file}
               onPress={() => {
-                setFolder(null);
+                navigation.navigate("library-file", { url: file.url });
               }}
-              title="Back"
             />
-            {folder.children.map((file) => (
-              <View key={file.name}>
-                <Text
-                  onPress={() => {
-                    navigation.navigate("library-file", { url: file.url });
-                  }}
-                >
-                  {file.name}
-                </Text>
-              </View>
-            ))}
-          </View>
-        </View>
+          ))}
+        </Flex>
       </ScrollView>
     );
   }
-
-  const icons = {
-    "brown-bag": require(`../icons/brown-bag.png`),
-  };
 
   return (
     <ScrollView
@@ -98,42 +102,52 @@ function LibraryRootScreen({ route, navigation }) {
         sx={{
           flexWrap: "wrap",
           flex: 1,
-          justifyContent: "center",
+          justifyContent: "flex-start",
         }}
       >
         {MOCK_LIBRARY_DATA.map((folder) => (
-          <Box
+          <Folder
             key={folder.name}
-            sx={{
-              padding: 2,
-              width: ["50%", "30%"],
-            }}
-          >
-            <Card
-              elevation={2}
-              onPress={() => {
-                setFolder(folder);
-              }}
-            >
-              <Card.Cover
-                style={{
-                  backgroundColor: "white",
-                }}
-                source={icons[folder.icon]}
-              />
-              <Card.Content>
-                <Text
-                  style={{
-                    textAlign: "center",
-                  }}
-                >
-                  {folder.name}
-                </Text>
-              </Card.Content>
-            </Card>
-          </Box>
+            folder={folder}
+            onPress={() => setFolder(folder)}
+          />
         ))}
       </Flex>
     </ScrollView>
   );
 }
+
+type FolderProps = {
+  folder: any;
+  onPress: any;
+};
+
+const Folder = ({ folder, onPress }) => {
+  return (
+    <Box
+      key={folder.name}
+      sx={{
+        padding: 2,
+        width: ["50%", "30%"],
+      }}
+    >
+      <Card elevation={2} onPress={onPress}>
+        <Card.Cover
+          style={{
+            backgroundColor: "white",
+          }}
+          source={icons[folder.icon]}
+        />
+        <Card.Content>
+          <Text
+            style={{
+              textAlign: "center",
+            }}
+          >
+            {folder.name}
+          </Text>
+        </Card.Content>
+      </Card>
+    </Box>
+  );
+};
