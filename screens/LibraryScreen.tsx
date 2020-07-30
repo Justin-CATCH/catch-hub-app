@@ -128,31 +128,33 @@ type FolderProps = {
 
 const Folder = ({ folder, onPress }) => {
   if (folder.type === "video") {
-    <Box
-      key={folder.name}
-      sx={{
-        padding: 2,
-        width: ["50%", "30%"],
-      }}
-    >
-      <Card elevation={2} onPress={onPress}>
-        <WebView
-          style={{
-            height: 100,
-          }}
-          source={{ uri: folder.url }} // Can be a URL or a local file.
-        />
-        <Card.Content>
-          <Text
+    return (
+      <Box
+        key={folder.name}
+        sx={{
+          padding: 2,
+          width: ["50%", "30%"],
+        }}
+      >
+        <Card elevation={2} onPress={onPress}>
+          <WebView
             style={{
-              textAlign: "center",
+              height: 100,
             }}
-          >
-            {folder.name}
-          </Text>
-        </Card.Content>
-      </Card>
-    </Box>;
+            source={{ uri: folder.url }} // Can be a URL or a local file.
+          />
+          <Card.Content>
+            <Text
+              style={{
+                textAlign: "center",
+              }}
+            >
+              {folder.name}
+            </Text>
+          </Card.Content>
+        </Card>
+      </Box>
+    );
   }
 
   return (
@@ -164,10 +166,19 @@ const Folder = ({ folder, onPress }) => {
       }}
     >
       <Card elevation={2} onPress={onPress} style={{ display: "flex" }}>
-        <Card.Content style={{ display: "flex" }}>
+        <Card.Content
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
           <Card.Cover
             style={{
+              height: 50,
               backgroundColor: "white",
+              marginRight: 12,
             }}
             source={icons[folder.icon]}
           />

@@ -15,8 +15,7 @@ export const MOCK_LIBRARY_DATA = [
       {
         name: "Flutter for the JS Developer",
         type: "video",
-        url:
-          "https://www.youtube.com/embed/q5J5ho7YUhAhttps://www.youtube.com/embed/7sJZi0grFR4",
+        url: "https://www.youtube.com/embed/q5J5ho7YUhA",
       },
     ],
     icon: "brown-bag",
