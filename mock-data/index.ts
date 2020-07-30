@@ -111,6 +111,32 @@ export const MOCK_LIBRARY_DATA = [
 ];
 
 export const ONBOARDING_MOCK_DATA = {
+  backend: {
+    title: "Backend",
+    days: [
+      {
+        description: `Welcome to your first day at Catch! We hope that this will be both a pleasant and exciting place to work. Today we'll focus on meeting everyone and getting your computer ready:`,
+
+        tasks: [
+          { text: "Set up your local machine" },
+          { text: "Meet some the people you will be working with" },
+          {
+            text:
+              "Check out the cafe and challenge someone to a game of table tennis",
+          },
+        ],
+      },
+      {
+        description: `Back for more, huh? Today it's time to:`,
+        tasks: [
+          { text: "Learn about Web and Unity" },
+          { text: "Learn about RBT and Absinthe" },
+          { text: "Set up your Web and Unity environments" },
+        ],
+      },
+    ],
+  },
+
   frontend: {
     title: "Frontend",
     days: [
