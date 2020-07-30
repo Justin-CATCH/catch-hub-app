@@ -110,6 +110,13 @@ export const MOCK_LIBRARY_DATA = [
   },
 ];
 
+export const ONBOARDING_MOCK_DATA = {
+  frontend: {
+    title: "Frontend",
+
+  }
+}
+
 // export default function LibraryScreen() {
 //   const [data, setData] = React.useState("");
 //   const [files, setFiles] = React.useState([]);

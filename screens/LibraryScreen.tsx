@@ -3,32 +3,55 @@ import { StyleSheet, ScrollView, Button } from "react-native";
 import Markdown from "react-native-markdown-renderer";
 
 import { Text, View } from "../components/Themed";
-import { Card, Title } from 'react-native-paper'
-
+import { Card, Title } from "react-native-paper";
+import { createStackNavigator } from "@react-navigation/stack";
 
 import { MOCK_LIBRARY_DATA } from "../mock-data";
 
-export default function LibraryScreen() {
-  const [file, setFile] = React.useState(null);
-  const [folder, setFolder] = React.useState(null);
+const Stack = createStackNavigator();
 
-  if (file !== null) {
-    return (
-      <ScrollView>
-        <View style={styles.container}>
-          <View>
-            <Button
-              onPress={() => {
-                setFile(null);
-              }}
-              title="Back"
-            />
-          </View>
-          <Markdown>{file}</Markdown>
+export default () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Root"
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="library-folder" component={LibraryRootScreen} />
+      <Stack.Screen name="library-file" component={LibraryFileScreen} />
+    </Stack.Navigator>
+  );
+};
+
+function LibraryFileScreen({ route, navigation }) {
+  const [file, setFile] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch(route.params.url)
+      .then((res) => res.text())
+      .then((md) => {
+        setFile(md);
+      });
+  });
+
+  return (
+    <ScrollView>
+      <View style={styles.container}>
+        <View>
+          <Button
+            onPress={() => {
+              navigation.goBack();
+            }}
+            title="Back"
+          />
         </View>
-      </ScrollView>
-    );
-  }
+        <Markdown>{file}</Markdown>
+      </View>
+    </ScrollView>
+  );
+}
+
+function LibraryRootScreen({ route, navigation }) {
+  const [folder, setFolder] = React.useState(null);
 
   if (folder !== null) {
     return (
@@ -45,11 +68,7 @@ export default function LibraryScreen() {
               <View key={file.name}>
                 <Text
                   onPress={() => {
-                    fetch(file.url)
-                      .then((res) => res.text())
-                      .then((md) => {
-                        setFile(md);
-                      });
+                    navigation.navigate("library-file", { url: file.url });
                   }}
                 >
                   {file.name}
