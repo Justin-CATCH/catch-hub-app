@@ -121,23 +121,25 @@ export const ONBOARDING_MOCK_DATA = {
     title: "Backend",
     days: [
       {
+        id: 1,
         description: `Welcome to your first day at Catch! We hope that this will be both a pleasant and exciting place to work. Today we'll focus on meeting everyone and getting your computer ready:`,
-
         tasks: [
-          { text: "Set up your local machine" },
-          { text: "Meet some the people you will be working with" },
+          { id: 1, text: "Set up your local machine" },
+          { id: 2, text: "Meet some the people you will be working with" },
           {
+            id: 3,
             text:
               "Check out the cafe and challenge someone to a game of table tennis",
           },
         ],
       },
       {
+        id: 2,
         description: `Back for more, huh? Today it's time to:`,
         tasks: [
-          { text: "Learn about Web and Unity" },
-          { text: "Learn about RBT and Absinthe" },
-          { text: "Set up your Web and Unity environments" },
+          { id: 1, text: "Learn about Web and Unity" },
+          { id: 2, text: "Learn about RBT and Absinthe" },
+          { id: 3, text: "Set up your Web and Unity environments" },
         ],
       },
     ],

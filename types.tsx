@@ -17,3 +17,16 @@ export type TabOneParamList = {
 export type TabTwoParamList = {
   TabTwoScreen: undefined;
 };
+
+export type Person = {
+  photo?: string;
+  askAbout?: string;
+  bio?: string;
+  birthday?: string;
+  email?: string;
+  github?: string;
+  joined?: string;
+  name?: string;
+  role?: string;
+  slack?: string;
+};

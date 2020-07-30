@@ -1,35 +1,19 @@
 import React, { useState } from "react";
-import { ScrollView, Flex, Box } from "dripsy";
-import { Linking } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { ScrollView, Flex } from "dripsy";
 import {
   Button,
   ActivityIndicator,
   Card,
-  Modal,
   Avatar,
   Text,
   Searchbar,
-  Portal,
-  TouchableRipple,
 } from "react-native-paper";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { dbInstance } from "../db";
 import faker from "faker";
 import { theme } from "../theme";
-
-type Person = {
-  photo?: string;
-  askAbout?: string;
-  bio?: string;
-  birthday?: string;
-  email?: string;
-  github?: string;
-  joined?: string;
-  name?: string;
-  role?: string;
-  slack?: string;
-};
+import { Person } from "../types";
+import { PersonModal } from "../components/PersonModal";
 
 export default function PeopleScreen() {
   const [people, loading] = useCollection(dbInstance.collection("people"));
@@ -38,7 +22,7 @@ export default function PeopleScreen() {
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  const [modalPerson, setModalPerson] = useState<Person | null>(null);
+  const [modalPerson, setModalPerson] = useState<Person | undefined>(undefined);
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -113,135 +97,11 @@ export default function PeopleScreen() {
 
   return (
     <>
-      <Portal>
-        <Modal
-          visible={visible}
-          onDismiss={hideModal}
-          contentContainerStyle={{
-            position: "absolute",
-            margin: "auto",
-            left: 20,
-            right: 20,
-          }}
-        >
-          <Card>
-            <Card.Title
-              title={modalPerson?.name}
-              titleStyle={{
-                textAlign: "center",
-              }}
-            />
-            <Card.Content>
-              <Flex
-                sx={{
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Avatar.Image
-                  size={80}
-                  source={{
-                    uri: modalPerson?.photo || faker.image.avatar(),
-                  }}
-                />
-                <Box>
-                  <Text
-                    style={{
-                      marginTop: 10,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Bio
-                  </Text>
-                  <Text
-                    style={{
-                      marginTop: 5,
-                    }}
-                  >
-                    {modalPerson?.bio}
-                  </Text>
-
-                  <Text
-                    style={{
-                      marginTop: 10,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Breaking the ice
-                  </Text>
-                  <Text
-                    style={{
-                      marginTop: 5,
-                    }}
-                  >
-                    {modalPerson?.askAbout}
-                  </Text>
-
-                  <Text
-                    style={{
-                      marginTop: 10,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Contact
-                  </Text>
-                  <Box>
-                    {modalPerson?.email && (
-                      <TouchableRipple
-                        style={{ marginTop: 5 }}
-                        rippleColor="rgba(0, 0, 0, .32)"
-                        onPress={() =>
-                          Linking.openURL(`mailto:${modalPerson?.email}`)
-                        }
-                      >
-                        <Flex style={{ alignItems: "center" }}>
-                          <Ionicons name="ios-mail" size={20} />
-                          <Text style={{ marginLeft: 5 }}>
-                            {modalPerson?.email || ""}
-                          </Text>
-                        </Flex>
-                      </TouchableRipple>
-                    )}
-                    {modalPerson?.slack && (
-                      <TouchableRipple
-                        style={{ marginTop: 5 }}
-                        rippleColor="rgba(0, 0, 0, .32)"
-                        onPress={() => Linking.openURL("slack://open")}
-                      >
-                        <Flex style={{ alignItems: "center" }}>
-                          <Ionicons name="logo-slack" size={20} />
-                          <Text style={{ marginLeft: 5 }}>
-                            {modalPerson?.slack || ""}
-                          </Text>
-                        </Flex>
-                      </TouchableRipple>
-                    )}
-                    {modalPerson?.github && (
-                      <TouchableRipple
-                        style={{ marginTop: 5 }}
-                        rippleColor="rgba(0, 0, 0, .32)"
-                        onPress={() =>
-                          Linking.openURL(
-                            `https://github.com/${modalPerson.github}`
-                          )
-                        }
-                      >
-                        <Flex style={{ alignItems: "center" }}>
-                          <Ionicons name="logo-github" size={20} />
-                          <Text style={{ marginLeft: 5 }}>
-                            {modalPerson?.github || ""}
-                          </Text>
-                        </Flex>
-                      </TouchableRipple>
-                    )}
-                  </Box>
-                </Box>
-              </Flex>
-            </Card.Content>
-          </Card>
-        </Modal>
-      </Portal>
+      <PersonModal
+        visible={visible}
+        hideModal={hideModal}
+        modalPerson={modalPerson}
+      />
       <ScrollView
         sx={{
           backgroundColor: theme.colors.backgroundColor,

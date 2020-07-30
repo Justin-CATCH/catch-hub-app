@@ -107,7 +107,7 @@ export default function BottomTabNavigator() {
         component={PeopleNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-people" color={color} size={30} />
+            <TabBarIcon name="ios-people" color={color} />
           ),
         }}
       />
