@@ -39,6 +39,8 @@ export default function PeopleScreen() {
   const hideModal = () => setVisible(false);
   const [modalPerson, setModalPerson] = useState<Person | null>(null);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   function renderPeopleRow(person: Person) {
     return (
       <Card
@@ -102,6 +104,11 @@ export default function PeopleScreen() {
   }
 
   const peopleData = people?.docs?.map((doc) => doc.data()) || [];
+  const filteredPeopleData = searchTerm
+    ? peopleData.filter((person) =>
+        person.name.toLowerCase().includes(searchTerm.toLowerCase(an))
+      )
+    : peopleData;
 
   return (
     <>
@@ -244,7 +251,8 @@ export default function PeopleScreen() {
       >
         <Searchbar
           placeholder="Search by name"
-          value=""
+          value={searchTerm}
+          onChangeText={setSearchTerm}
           style={{ marginTop: 10 }}
         />
         <Flex
@@ -253,7 +261,7 @@ export default function PeopleScreen() {
             flexWrap: "wrap",
           }}
         >
-          {peopleData.map(renderPeopleRow)}
+          {filteredPeopleData.map(renderPeopleRow)}
         </Flex>
       </ScrollView>
     </>
