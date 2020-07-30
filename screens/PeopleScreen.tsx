@@ -107,7 +107,7 @@ export default function PeopleScreen() {
   const peopleData = people?.docs?.map((doc) => doc.data()) || [];
   const filteredPeopleData = searchTerm
     ? peopleData.filter((person) =>
-        person.name.toLowerCase().includes(searchTerm.toLowerCase(an))
+        person.name.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : peopleData;
 
