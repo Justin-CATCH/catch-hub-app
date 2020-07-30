@@ -181,6 +181,7 @@ export const ONBOARDING_MOCK_DATA = {
     title: "Frontend",
     days: [
       {
+        id: 1,
         description:
           "Welcome to your first day at Catch! We hope that this will be both a pleasant and exciting place to work. Today you will:",
         tasks: [
@@ -199,6 +200,7 @@ export const ONBOARDING_MOCK_DATA = {
         ],
       },
       {
+        id: 2,
         description:
           "Today you will start on your engineering journey at Catch:",
         tasks: [
@@ -210,6 +212,7 @@ export const ONBOARDING_MOCK_DATA = {
         ],
       },
       {
+        id: 3,
         description:
           "Today you will deep dive on how we do frontend development at Catch.",
         tasks: [
@@ -221,6 +224,7 @@ export const ONBOARDING_MOCK_DATA = {
         ],
       },
       {
+        id: 4,
         description: `Today, let's start seeing the code and making Catch frontend accessible on your local machine 💪.`,
         tasks: [
           { text: "Set up your frontend monorepo" },
@@ -231,6 +235,7 @@ export const ONBOARDING_MOCK_DATA = {
       },
 
       {
+        id: 5,
         description: `'Let's get your hand dirty today.`,
         tasks: [
           {
