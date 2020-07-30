@@ -5,9 +5,16 @@ import { theme } from "../theme";
 import { ScrollView, Flex, Box, Text, View } from "dripsy";
 import { useDispatch } from "react-redux";
 import { doSomething } from "../store";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { dbInstance } from "../db";
+import SwipeCards from "react-native-swipe-cards";
+import { WebView } from "react-native-webview";
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
+  const [people, loading] = useCollection(dbInstance.collection("people"));
+
+  const peopleData = people?.docs?.map((doc) => doc.data()) || [];
 
   return (
     <View
@@ -17,6 +24,12 @@ export default function HomeScreen() {
         flex: 1,
       }}
     >
+      <WebView
+        style={{
+          height: 100,
+        }}
+        source={{ uri: "https://www.youtube.com/embed/Bg4qmnncwhk" }} // Can be a URL or a local file.
+      />
       <Flex
         sx={{
           width: "100%",
