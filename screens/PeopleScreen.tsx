@@ -4,18 +4,19 @@ import { Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import {
   Button,
+  ActivityIndicator,
   Card,
   Modal,
   Avatar,
   Text,
   Searchbar,
   Portal,
-  IconButton,
   TouchableRipple,
 } from "react-native-paper";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { dbInstance } from "../db";
 import faker from "faker";
+import { theme } from "../theme";
 
 type Person = {
   name: string;
@@ -29,9 +30,7 @@ type Person = {
 };
 
 export default function PeopleScreen() {
-  const [people, loading, error] = useCollection(
-    dbInstance.collection("people")
-  );
+  const [people, loading] = useCollection(dbInstance.collection("people"));
 
   const [visible, setVisible] = React.useState(false);
 
@@ -243,7 +242,7 @@ export default function PeopleScreen() {
       </Portal>
       <ScrollView
         sx={{
-          backgroundColor: "white",
+          backgroundColor: theme.colors.backgroundColor,
           display: "flex",
           flex: 1,
           px: 15,
@@ -255,14 +254,27 @@ export default function PeopleScreen() {
           onChangeText={setSearchTerm}
           style={{ marginTop: 10 }}
         />
-        <Flex
-          sx={{
-            width: "100%",
-            flexWrap: "wrap",
-          }}
-        >
-          {filteredPeopleData.map(renderPeopleRow)}
-        </Flex>
+        {loading ? (
+          <Flex
+            sx={{
+              marginTop: 15,
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            <ActivityIndicator />
+            <Text>Loading...</Text>
+          </Flex>
+        ) : (
+          <Flex
+            sx={{
+              width: "100%",
+              flexWrap: "wrap",
+            }}
+          >
+            {filteredPeopleData.map(renderPeopleRow)}
+          </Flex>
+        )}
       </ScrollView>
     </>
   );

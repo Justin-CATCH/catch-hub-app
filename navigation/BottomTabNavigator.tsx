@@ -44,7 +44,13 @@ function PeopleNavigator() {
       <PeopleStack.Screen
         name="PeopleScreen"
         component={PeopleScreen}
-        options={{ headerTitle: "People" }}
+        options={{
+          headerTitle: "People",
+          headerTintColor: "white",
+          headerStyle: {
+            backgroundColor: theme.colors.primary,
+          },
+        }}
       />
     </PeopleStack.Navigator>
   );

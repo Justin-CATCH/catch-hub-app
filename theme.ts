@@ -14,6 +14,7 @@ const namedColors = {
   text: "#333333",
   subText: "#737373",
   inactive: "#979797",
+  backgroundColor: "#fafafa",
 };
 
 export const theme = {
