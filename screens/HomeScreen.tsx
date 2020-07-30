@@ -2,6 +2,8 @@ import * as React from "react";
 import { StyleSheet } from "react-native";
 import { Text, View } from "../components/Themed";
 import { ProgressBar, Colors } from "react-native-paper";
+import { AnimatedCircularProgress } from "react-native-circular-progress";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 export default function HomeScreen() {
   return (
