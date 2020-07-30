@@ -1,6 +1,7 @@
 import * as React from "react";
 import { StyleSheet } from "react-native";
 import { Text, View } from "../components/Themed";
+import { ProgressBar, Colors } from "react-native-paper";
 
 export default function HomeScreen() {
   return (

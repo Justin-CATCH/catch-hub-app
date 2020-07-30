@@ -1,28 +1,21 @@
 import React, { useState } from "react";
-import {
-  View,
-  FlatList,
-  ScrollView,
-  Container,
-  Box,
-  Flex,
-  H4,
-  A,
-  H5,
-} from "dripsy";
-import { Image, StyleSheet } from "react-native";
+import { ScrollView, Flex, Box } from "dripsy";
+import { Linking } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import {
   Button,
+  ActivityIndicator,
   Card,
   Modal,
   Avatar,
   Text,
   Searchbar,
+  Portal,
+  TouchableRipple,
 } from "react-native-paper";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { dbInstance } from "../db";
 import faker from "faker";
-import styled from "styled-components/native";
 import { theme } from "../theme";
 
 type Person = {
@@ -39,15 +32,20 @@ type Person = {
 };
 
 export default function PeopleScreen() {
-  const [people, loading, error] = useCollection(
-    dbInstance.collection("people")
-  );
+  const [people, loading] = useCollection(dbInstance.collection("people"));
 
-  const [showModal, setShowModal] = useState(false);
+  const [visible, setVisible] = React.useState(false);
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const [modalPerson, setModalPerson] = useState<Person | null>(null);
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   function renderPeopleRow(person: Person) {
     return (
       <Card
+        key={person.name}
         elevation={2}
         style={{
           width: "100%",
@@ -56,6 +54,10 @@ export default function PeopleScreen() {
       >
         <Card.Content
           style={{
+            paddingTop: 8,
+            paddingBottom: 8,
+            paddingLeft: 8,
+            paddingRight: 8,
             width: "100%",
             display: "flex",
             flexDirection: "row",
@@ -90,7 +92,10 @@ export default function PeopleScreen() {
             sx={{
               justifySelf: "center",
             }}
-            onPress={() => setShowModal(true)}
+            onPress={() => {
+              showModal();
+              setModalPerson(person);
+            }}
           >
             <Text>View</Text>
           </Button>
@@ -100,15 +105,146 @@ export default function PeopleScreen() {
   }
 
   const peopleData = people?.docs?.map((doc) => doc.data()) || [];
+  const filteredPeopleData = searchTerm
+    ? peopleData.filter((person) =>
+        person.name.toLowerCase().includes(searchTerm.toLowerCase(an))
+      )
+    : peopleData;
 
   return (
     <>
-      <Modal visible={true} onDismiss={() => setShowModal(false)}>
-        <Text>Example Modal</Text>
-      </Modal>
+      <Portal>
+        <Modal
+          visible={visible}
+          onDismiss={hideModal}
+          contentContainerStyle={{
+            position: "absolute",
+            margin: "auto",
+            left: 20,
+            right: 20,
+          }}
+        >
+          <Card>
+            <Card.Title
+              title={modalPerson?.name}
+              titleStyle={{
+                textAlign: "center",
+              }}
+            />
+            <Card.Content>
+              <Flex
+                sx={{
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar.Image
+                  size={80}
+                  source={{
+                    uri: modalPerson?.photo || faker.image.avatar(),
+                  }}
+                />
+                <Box>
+                  <Text
+                    style={{
+                      marginTop: 10,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Bio
+                  </Text>
+                  <Text
+                    style={{
+                      marginTop: 5,
+                    }}
+                  >
+                    {modalPerson?.bio}
+                  </Text>
+
+                  <Text
+                    style={{
+                      marginTop: 10,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Breaking the ice
+                  </Text>
+                  <Text
+                    style={{
+                      marginTop: 5,
+                    }}
+                  >
+                    {modalPerson?.askAbout}
+                  </Text>
+
+                  <Text
+                    style={{
+                      marginTop: 10,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Contact
+                  </Text>
+                  <Box>
+                    {modalPerson?.email && (
+                      <TouchableRipple
+                        style={{ marginTop: 5 }}
+                        rippleColor="rgba(0, 0, 0, .32)"
+                        onPress={() =>
+                          Linking.openURL(`mailto:${modalPerson?.email}`)
+                        }
+                      >
+                        <Flex style={{ alignItems: "center" }}>
+                          <Ionicons name="ios-mail" size={20} />
+                          <Text style={{ marginLeft: 5 }}>
+                            {modalPerson?.email || ""}
+                          </Text>
+                        </Flex>
+                      </TouchableRipple>
+                    )}
+                    {modalPerson?.slack && (
+                      <TouchableRipple
+                        style={{ marginTop: 5 }}
+                        rippleColor="rgba(0, 0, 0, .32)"
+                        onPress={() => Linking.openURL("slack://open")}
+                      >
+                        <Flex style={{ alignItems: "center" }}>
+                          <Ionicons name="logo-slack" size={20} />
+                          <Text style={{ marginLeft: 5 }}>
+                            {modalPerson?.slack || ""}
+                          </Text>
+                        </Flex>
+                      </TouchableRipple>
+                    )}
+                    {modalPerson?.github && (
+                      <TouchableRipple
+                        style={{ marginTop: 5 }}
+                        rippleColor="rgba(0, 0, 0, .32)"
+                        onPress={() =>
+                          Linking.openURL(
+                            `https://github.com/${modalPerson.github}`
+                          )
+                        }
+                      >
+                        <Flex style={{ alignItems: "center" }}>
+                          <Ionicons name="logo-github" size={20} />
+                          <Text style={{ marginLeft: 5 }}>
+                            {modalPerson?.github || ""}
+                          </Text>
+                        </Flex>
+                      </TouchableRipple>
+                    )}
+                  </Box>
+                </Box>
+              </Flex>
+            </Card.Content>
+          </Card>
+        </Modal>
+      </Portal>
       <ScrollView
         sx={{
-          backgroundColor: "white",
+          backgroundColor: theme.colors.backgroundColor,
           display: "flex",
           flex: 1,
           px: 15,
@@ -116,57 +252,32 @@ export default function PeopleScreen() {
       >
         <Searchbar
           placeholder="Search by name"
-          value=""
+          value={searchTerm}
+          onChangeText={setSearchTerm}
           style={{ marginTop: 10 }}
         />
-        <Flex
-          sx={{
-            width: "100%",
-            flexWrap: "wrap",
-          }}
-        >
-          {peopleData.map(renderPeopleRow)}
-        </Flex>
+        {loading ? (
+          <Flex
+            sx={{
+              marginTop: 15,
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            <ActivityIndicator />
+            <Text>Loading...</Text>
+          </Flex>
+        ) : (
+          <Flex
+            sx={{
+              width: "100%",
+              flexWrap: "wrap",
+            }}
+          >
+            {filteredPeopleData.map(renderPeopleRow)}
+          </Flex>
+        )}
       </ScrollView>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-});
