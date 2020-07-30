@@ -26,10 +26,16 @@ import styled from "styled-components/native";
 import { theme } from "../theme";
 
 type Person = {
-  name: string;
-  bio: string;
   photo?: string;
+  askAbout?: string;
+  bio?: string;
+  birthday?: string;
+  email?: string;
+  github?: string;
+  joined?: string;
+  name?: string;
   role?: string;
+  slack?: string;
 };
 
 export default function PeopleScreen() {
