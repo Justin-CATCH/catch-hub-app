@@ -5,33 +5,57 @@ import Markdown from "react-native-markdown-renderer";
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 
+import { MOCK_LIBRARY_DATA } from "../mock-data";
+
 export default function LibraryScreen() {
-  const [data, setData] = React.useState("");
-  const [files, setFiles] = React.useState([]);
+  const [file, setFile] = React.useState(null);
+  const [folder, setFolder] = React.useState(null);
 
-  React.useEffect(() => {
-    fetch(
-      "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setFiles(data.branch.files);
-      });
-  }, []);
-
-  if (data) {
+  if (file !== null) {
     return (
       <ScrollView>
         <View style={styles.container}>
           <View>
             <Button
               onPress={() => {
-                setData(null);
+                setFile(null);
               }}
               title="Back"
             />
           </View>
-          <Markdown>{data}</Markdown>
+          <Markdown>{file}</Markdown>
+        </View>
+      </ScrollView>
+    );
+  }
+
+  if (folder !== null) {
+    return (
+      <ScrollView>
+        <View style={styles.container}>
+          <View>
+            <Button
+              onPress={() => {
+                setFolder(null);
+              }}
+              title="Back"
+            />
+            {folder.children.map((file) => (
+              <View key={file.name}>
+                <Text
+                  onPress={() => {
+                    fetch(file.url)
+                      .then((res) => res.text())
+                      .then((md) => {
+                        setFile(md);
+                      });
+                  }}
+                >
+                  {file.name}
+                </Text>
+              </View>
+            ))}
+          </View>
         </View>
       </ScrollView>
     );
@@ -40,19 +64,14 @@ export default function LibraryScreen() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        {files.map((file) => (
-          <View key={file.path}>
+        {MOCK_LIBRARY_DATA.map((folder) => (
+          <View key={folder.name}>
             <Text
               onPress={() => {
-                console.log("click");
-                fetch(file._links.content)
-                  .then((res) => res.text())
-                  .then((md) => {
-                    setData(md);
-                  });
+                setFolder(folder);
               }}
             >
-              {file.name}
+              {folder.name}
             </Text>
           </View>
         ))}
