@@ -1,0 +1,101 @@
+Arguments: 
+  /Users/lioneltay/.nvm/versions/node/v10.20.1/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js
+
+PATH: 
+  /Users/lioneltay/.nvm/versions/node/v10.20.1/bin:/Users/lioneltay/.nvm/versions/node/v10.20.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/lioneltay/.nvm/versions/node/v10.20.1/bin:/Users/lioneltay/.macos-soe/bin:/usr/local/sbin:/usr/local/opt/sqlite/bin:/usr/local/opt/php@7.2/bin:/usr/local/opt/openssl/bin:/usr/local/opt/ncurses/bin:/usr/local/opt/mysql-client/bin:/usr/local/opt/go/libexec/bin:/usr/local/opt/curl/bin:/usr/local/opt/ansible@2.0/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  10.20.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/lioneltay/src/catch-hub-app/package.json: Unexpected token < in JSON at position 1118
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:310:30)
+      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+      "start": "expo start",
+      "android": "expo start --android",
+      "ios": "expo start --ios",
+      "web": "expo start --web",
+      "eject": "expo eject",
+      "test": "jest --watchAll",
+      "typecheck": "tsc --noEmit --watch --skipLibCheck"
+    },
+    "jest": {
+      "preset": "jest-expo"
+    },
+    "dependencies": {
+      "@expo/vector-icons": "^10.0.0",
+      "@react-native-community/masked-view": "0.1.10",
+      "@react-navigation/bottom-tabs": "^5.6.1",
+      "@react-navigation/native": "^5.6.1",
+      "@react-navigation/stack": "^5.6.2",
+      "dripsy": "^0.5.2",
+      "expo": "~38.0.8",
+      "expo-asset": "~8.1.7",
+      "expo-constants": "~9.1.1",
+      "expo-font": "~8.2.1",
+      "expo-linking": "^1.0.1",
+      "expo-splash-screen": "~0.3.1",
+      "expo-status-bar": "^1.0.2",
+      "faker": "^4.1.0",
+      "firebase": "7.8.2",
+      "marked": "^1.1.1",
+      "react": "~16.11.0",
+      "react-dom": "~16.11.0",
+      "react-firebase-hooks": "^2.2.0",
+      "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+      "react-native-gesture-handler": "~1.6.0",
+  <<<<<<< HEAD
+      "react-native-markdown-renderer": "^3.2.8",
+  =======
+      "react-native-paper": "^4.0.1",
+  >>>>>>> 67861f09e458979bb9417cf2c69028aeab82b1f8
+      "react-native-safe-area-context": "~3.0.7",
+      "react-native-screens": "~2.9.0",
+      "react-native-swipe-cards": "^0.1.1",
+      "react-native-web": "~0.11.7",
+      "styled-components": "^5.1.1",
+      "swr": "^0.2.3",
+      "yaml": "^1.10.0"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.8.6",
+      "@react-native-community/eslint-config": "^2.0.0",
+      "@types/faker": "^4.1.12",
+      "@types/marked": "^1.1.0",
+      "@types/react": "~16.9.23",
+      "@types/react-native": "~0.62.13",
+      "@typescript-eslint/eslint-plugin": "^3.7.1",
+      "@typescript-eslint/parser": "^3.7.1",
+      "babel-preset-expo": "~8.1.0",
+      "eslint": "^7.5.0",
+      "eslint-config-airbnb-typescript": "^9.0.0",
+      "eslint-config-prettier": "^6.11.0",
+      "eslint-plugin-import": "^2.22.0",
+      "eslint-plugin-jsx-a11y": "^6.3.1",
+      "eslint-plugin-react": "^7.20.5",
+      "jest-expo": "~38.0.0",
+      "prettier": "^2.0.5",
+      "typescript": "~3.9.5"
+    },
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
