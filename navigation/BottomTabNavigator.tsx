@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
@@ -11,7 +11,7 @@ import LibraryScreen from "../screens/LibraryScreen";
 import MeScreen from "../screens/MeScreen";
 import { BottomTabParamList } from "../types";
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+const BottomTab = createMaterialBottomTabNavigator<BottomTabParamList>();
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/

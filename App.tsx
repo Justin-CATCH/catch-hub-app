@@ -7,7 +7,7 @@ import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import { ThemeProvider } from "dripsy";
 import { theme } from "./theme";
-import { Provider as PaperProvider } from "react-native-paper";
+import { Provider as PaperProvider, Portal } from "react-native-paper";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -18,12 +18,14 @@ export default function App() {
   } else {
     return (
       <PaperProvider>
-        <ThemeProvider theme={theme}>
-          <SafeAreaProvider>
-            <Navigation colorScheme={colorScheme} />
-            <StatusBar />
-          </SafeAreaProvider>
-        </ThemeProvider>
+        <Portal>
+          <ThemeProvider theme={theme}>
+            <SafeAreaProvider>
+              <Navigation colorScheme={colorScheme} />
+              <StatusBar />
+            </SafeAreaProvider>
+          </ThemeProvider>
+        </Portal>
       </PaperProvider>
     );
   }

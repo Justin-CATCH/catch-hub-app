@@ -7,12 +7,18 @@ import {
   Box,
   Flex,
   H4,
-  Text,
   A,
   H5,
 } from "dripsy";
 import { Image, StyleSheet } from "react-native";
-import { Button, Card, Modal } from "react-native-paper";
+import {
+  Button,
+  Card,
+  Modal,
+  Avatar,
+  Text,
+  Searchbar,
+} from "react-native-paper";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { dbInstance } from "../db";
 import faker from "faker";
@@ -36,66 +42,53 @@ export default function PeopleScreen() {
   function renderPeopleRow(person: Person) {
     return (
       <Card
+        elevation={2}
         style={{
           width: "100%",
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
+          marginTop: 10,
         }}
       >
-        <Box
-          sx={{
-            width: 80,
-            height: 80,
-            backgroundColor: "inactive",
-            borderRadius: "50%",
-            overflow: "hidden",
+        <Card.Content
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            alignItems: "center",
           }}
         >
-          <Image
-            style={{
-              position: "absolute",
-              left: 0,
-              bottom: 0,
-              right: 0,
-              top: 0,
-              resizeMode: "contain",
-            }}
+          <Avatar.Image
+            size={80}
             source={{
               uri: person.photo || faker.image.avatar(),
             }}
           />
-        </Box>
-        <Flex
-          sx={{
-            flexDirection: "column",
-            pl: 10,
-            flexGrow: 2,
-          }}
-        >
-          <H4
-            style={{
-              margin: 0,
+          <Flex
+            sx={{
+              flexDirection: "column",
+              pl: 15,
+              flexGrow: 2,
+              justifyContent: "center",
             }}
           >
-            {person.name}
-          </H4>
-          <H5
-            style={{
-              marginTop: 0,
+            <Text
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              {person.name}
+            </Text>
+            <Text>{person.role}</Text>
+          </Flex>
+          <Button
+            sx={{
+              justifySelf: "center",
             }}
+            onPress={() => setShowModal(true)}
           >
-            {person.role}
-          </H5>
-        </Flex>
-        <Button
-          sx={{
-            alignSelf: "flex-end",
-          }}
-          onPress={() => setShowModal(person)}
-        >
-          <Text>View</Text>
-        </Button>
+            <Text>View</Text>
+          </Button>
+        </Card.Content>
       </Card>
     );
   }
@@ -104,25 +97,8 @@ export default function PeopleScreen() {
 
   return (
     <>
-      <Modal
-        visible={showModal != false}
-        animationType="fade"
-        transparent={true}
-        onRequestClose={() => setShowModal(false)}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-
-            <Button
-              onPress={() => {
-                setShowModal(false);
-              }}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Button>
-          </View>
-        </View>
+      <Modal visible={true} onDismiss={() => setShowModal(false)}>
+        <Text>Example Modal</Text>
       </Modal>
       <ScrollView
         sx={{
@@ -132,6 +108,11 @@ export default function PeopleScreen() {
           px: 15,
         }}
       >
+        <Searchbar
+          placeholder="Search by name"
+          value=""
+          style={{ marginTop: 10 }}
+        />
         <Flex
           sx={{
             width: "100%",
