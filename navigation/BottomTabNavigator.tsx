@@ -10,13 +10,14 @@ import PeopleScreen from "../screens/PeopleScreen";
 import LibraryScreen from "../screens/LibraryScreen";
 import MeScreen from "../screens/MeScreen";
 import { BottomTabParamList } from "../types";
+import { theme } from "../theme";
 
 const BottomTab = createMaterialBottomTabNavigator<BottomTabParamList>();
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-function TabBarIcon(props: { name: string; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+function TabBarIcon(props: { name: string; color: string; size: number }) {
+  return <Ionicons size={25} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -82,6 +83,7 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
+      barStyle={{ backgroundColor: theme.colors.secondary }}
       initialRouteName="Home"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
     >
@@ -90,7 +92,7 @@ export default function BottomTabNavigator() {
         component={HomeNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="ios-home" color={color} />
           ),
         }}
       />
@@ -99,7 +101,7 @@ export default function BottomTabNavigator() {
         component={PeopleNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="ios-people" color={color} size={30} />
           ),
         }}
       />
@@ -108,7 +110,7 @@ export default function BottomTabNavigator() {
         component={LibraryNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="ios-book" color={color} />
           ),
         }}
       />
@@ -117,7 +119,7 @@ export default function BottomTabNavigator() {
         component={MeNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="ios-person" color={color} />
           ),
         }}
       />

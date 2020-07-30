@@ -18,14 +18,12 @@ export default function App() {
   } else {
     return (
       <PaperProvider>
-        <Portal>
-          <ThemeProvider theme={theme}>
-            <SafeAreaProvider>
-              <Navigation colorScheme={colorScheme} />
-              <StatusBar />
-            </SafeAreaProvider>
-          </ThemeProvider>
-        </Portal>
+        <ThemeProvider theme={theme}>
+          <SafeAreaProvider>
+            <Navigation colorScheme={colorScheme} />
+            <StatusBar />
+          </SafeAreaProvider>
+        </ThemeProvider>
       </PaperProvider>
     );
   }
