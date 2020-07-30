@@ -2,8 +2,9 @@ import * as React from "react";
 import { StyleSheet, ScrollView, Button } from "react-native";
 import Markdown from "react-native-markdown-renderer";
 
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import { Card, Title } from 'react-native-paper'
+
 
 import { MOCK_LIBRARY_DATA } from "../mock-data";
 
