@@ -19,14 +19,16 @@ import faker from "faker";
 import { theme } from "../theme";
 
 type Person = {
-  name: string;
-  bio: string;
   photo?: string;
-  role?: string;
   askAbout?: string;
+  bio?: string;
+  birthday?: string;
   email?: string;
-  slack?: string;
   github?: string;
+  joined?: string;
+  name?: string;
+  role?: string;
+  slack?: string;
 };
 
 export default function PeopleScreen() {
