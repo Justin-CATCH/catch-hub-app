@@ -2,9 +2,11 @@ export const MOCK_LIBRARY_DATA = [
   {
     name: "Brown Bags",
     children: [],
+    icon: "brown-bag",
   },
   {
     name: "Frontend",
+    icon: "brown-bag",
     children: [
       {
         name: "component-library.md",
@@ -40,6 +42,7 @@ export const MOCK_LIBRARY_DATA = [
   },
   {
     name: "Backend",
+    icon: "brown-bag",
     children: [
       {
         name: "coding-style.md",
@@ -60,6 +63,7 @@ export const MOCK_LIBRARY_DATA = [
   },
   {
     name: "Microservices",
+    icon: "brown-bag",
     children: [
       {
         name: "structure.md",
@@ -70,6 +74,7 @@ export const MOCK_LIBRARY_DATA = [
   },
   {
     name: "Monitoring",
+    icon: "brown-bag",
     children: [
       {
         name: "dashboards.md",
@@ -95,6 +100,7 @@ export const MOCK_LIBRARY_DATA = [
   },
   {
     name: "Security",
+    icon: "brown-bag",
     children: [
       {
         name: "security-basics-1.md",

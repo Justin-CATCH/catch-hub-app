@@ -1,31 +1,46 @@
 import * as React from "react";
 import { StyleSheet } from "react-native";
-import { Text, View } from "../components/Themed";
-import { ProgressBar, Colors } from "react-native-paper";
+import { ScrollView, Flex, Box, View } from "dripsy";
+import { Card } from "react-native-paper";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
-import { useCollection } from "react-firebase-hooks/firestore";
+import { theme } from "../theme";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Home Screen</Text>
+    <View
+      sx={{
+        backgroundColor: theme.colors.backgroundColor,
+        display: "flex",
+        flex: 1,
+      }}
+    >
+      <Flex
+        sx={{
+          width: "100%",
+        }}
+      >
+        <Card
+          style={{
+            width: "100%",
+            marginTop: 10,
+          }}
+        >
+          <Card.Content>
+            <AnimatedCircularProgress
+              size={120}
+              width={15}
+              backgroundWidth={5}
+              fill={50}
+              tintColor="#00ff00"
+              tintColorSecondary="#ff0000"
+              backgroundColor="#3d5875"
+              arcSweepAngle={240}
+              rotation={240}
+              lineCap="round"
+            />
+          </Card.Content>
+        </Card>
+      </Flex>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});

@@ -1,13 +1,14 @@
 import * as React from "react";
-import { StyleSheet, ScrollView, Button } from "react-native";
+import { StyleSheet, Button } from "react-native";
 import Markdown from "react-native-markdown-renderer";
+import { Flex, Box, ScrollView } from "dripsy";
 
 import { Text, View } from "../components/Themed";
-import { Card, Title } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { MOCK_LIBRARY_DATA } from "../mock-data";
-
+import { theme } from "../theme";
+import { Card } from "react-native-paper";
 const Stack = createStackNavigator();
 
 export default () => {
@@ -81,21 +82,59 @@ function LibraryRootScreen({ route, navigation }) {
     );
   }
 
+  const icons = {
+    "brown-bag": require(`../icons/brown-bag.png`),
+  };
+
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <ScrollView
+      sx={{
+        backgroundColor: theme.colors.backgroundColor,
+        display: "flex",
+        flex: 1,
+        px: 15,
+      }}
+    >
+      <Flex
+        sx={{
+          flexWrap: "wrap",
+          flex: 1,
+          justifyContent: "center",
+        }}
+      >
         {MOCK_LIBRARY_DATA.map((folder) => (
-          <View key={folder.name}>
-            <Text
+          <Box
+            key={folder.name}
+            sx={{
+              padding: 2,
+              width: ["50%", "30%"],
+            }}
+          >
+            <Card
+              elevation={2}
               onPress={() => {
                 setFolder(folder);
               }}
             >
-              {folder.name}
-            </Text>
-          </View>
+              <Card.Cover
+                style={{
+                  backgroundColor: "white",
+                }}
+                source={icons[folder.icon]}
+              />
+              <Card.Content>
+                <Text
+                  style={{
+                    textAlign: "center",
+                  }}
+                >
+                  {folder.name}
+                </Text>
+              </Card.Content>
+            </Card>
+          </Box>
         ))}
-      </View>
+      </Flex>
     </ScrollView>
   );
 }
