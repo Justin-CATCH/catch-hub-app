@@ -41,7 +41,7 @@ function LibraryFileScreen({ route, navigation }) {
 
   return (
     <ScrollView>
-      <View>
+      <View style={{ paddingLeft: 12 }}>
         <View>
           <Button
             onPress={() => {
