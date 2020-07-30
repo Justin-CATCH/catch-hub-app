@@ -1,56 +1,17 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
+import { Ionicons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import * as React from "react";
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import HomeScreen from '../screens/HomeScreen';
-import PeopleScreen from '../screens/PeopleScreen';
-import LibraryScreen from '../screens/LibraryScreen';
-import MeScreen from '../screens/MeScreen';
-import { BottomTabParamList } from '../types';
+import Colors from "../constants/Colors";
+import useColorScheme from "../hooks/useColorScheme";
+import HomeScreen from "../screens/HomeScreen";
+import PeopleScreen from "../screens/PeopleScreen";
+import LibraryScreen from "../screens/LibraryScreen";
+import MeScreen from "../screens/MeScreen";
+import { BottomTabParamList } from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
-
-export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <BottomTab.Navigator
-      initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
-      <BottomTab.Screen
-        name="Home"
-        component={HomeNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="People"
-        component={PeopleNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Library"
-        component={LibraryNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Me"
-        component={MeNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-    </BottomTab.Navigator>
-  );
-}
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
@@ -68,7 +29,7 @@ function HomeNavigator() {
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerTitle: 'Home' }}
+        options={{ headerTitle: "Home" }}
       />
     </HomeStack.Navigator>
   );
@@ -82,7 +43,7 @@ function PeopleNavigator() {
       <PeopleStack.Screen
         name="PeopleScreen"
         component={PeopleScreen}
-        options={{ headerTitle: 'People' }}
+        options={{ headerTitle: "People" }}
       />
     </PeopleStack.Navigator>
   );
@@ -96,7 +57,7 @@ function LibraryNavigator() {
       <LibraryStack.Screen
         name="LibraryScreen"
         component={LibraryScreen}
-        options={{ headerTitle: 'Library' }}
+        options={{ headerTitle: "Library" }}
       />
     </LibraryStack.Navigator>
   );
@@ -110,8 +71,56 @@ function MeNavigator() {
       <MeStack.Screen
         name="MeScreen"
         component={MeScreen}
-        options={{ headerTitle: 'Library' }}
+        options={{ headerTitle: "Library" }}
       />
     </MeStack.Navigator>
+  );
+}
+
+export default function BottomTabNavigator() {
+  const colorScheme = useColorScheme();
+
+  return (
+    <BottomTab.Navigator
+      initialRouteName="Home"
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+    >
+      <BottomTab.Screen
+        name="Home"
+        component={HomeNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="People"
+        component={PeopleNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Library"
+        component={LibraryNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Me"
+        component={MeNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+    </BottomTab.Navigator>
   );
 }
