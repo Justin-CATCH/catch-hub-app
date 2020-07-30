@@ -9,31 +9,37 @@ export const MOCK_LIBRARY_DATA = [
     icon: "brown-bag",
     children: [
       {
+        icon: 'file',
         name: "component-library.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/component-library.md?r=raw",
       },
       {
+        icon: 'file',
         name: "design-system.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/design-system.md?r=raw",
       },
       {
+        icon: 'file',
         name: "general-architecture.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/general-architecture.md?r=raw",
       },
       {
+        icon: 'file',
         name: "monorepo.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/monorepo.md?r=raw",
       },
       {
+        icon: 'file',
         name: "tech-stack.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/tech-stack.md?r=raw",
       },
       {
+        icon: 'file',
         name: "testing-strategies.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/testing-strategies.md?r=raw",
@@ -45,16 +51,19 @@ export const MOCK_LIBRARY_DATA = [
     icon: "brown-bag",
     children: [
       {
+        icon: 'file',
         name: "coding-style.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/backend/coding-style.md?r=raw",
       },
       {
+        icon: 'file',
         name: "exceptions.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/backend/exceptions.md?r=raw",
       },
       {
+        icon: 'file',
         name: "schema-design.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/backend/schema-design.md?r=raw",
@@ -66,6 +75,7 @@ export const MOCK_LIBRARY_DATA = [
     icon: "brown-bag",
     children: [
       {
+        icon: 'file',
         name: "structure.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/microservices/structure.md?r=raw",
@@ -77,21 +87,25 @@ export const MOCK_LIBRARY_DATA = [
     icon: "brown-bag",
     children: [
       {
+        icon: 'file',
         name: "dashboards.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/monitoring/dashboards.md?r=raw",
       },
       {
+        icon: 'file',
         name: "monolog.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/monitoring/monolog.md?r=raw",
       },
       {
+        icon: 'file',
         name: "rollbar.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/monitoring/rollbar.md?r=raw",
       },
       {
+        icon: 'file',
         name: "scaylr.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/monitoring/scaylr.md?r=raw",
@@ -103,11 +117,13 @@ export const MOCK_LIBRARY_DATA = [
     icon: "brown-bag",
     children: [
       {
+        icon: 'file',
         name: "security-basics-1.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/security/security-basics-1.md?r=raw",
       },
       {
+        icon: 'file',
         name: "security-basics-2.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/security/security-basics-2.md?r=raw",
