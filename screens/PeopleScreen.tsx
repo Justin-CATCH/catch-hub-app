@@ -10,12 +10,14 @@ import {
   Text,
   A,
   H5,
-  Button,
 } from "dripsy";
-import { Image, TouchableOpacity, Modal } from "react-native";
+import { Image, StyleSheet } from "react-native";
+import { Button, Card, Modal } from "react-native-paper";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { dbInstance } from "../db";
 import faker from "faker";
+import styled from "styled-components/native";
+import { theme } from "../theme";
 
 type Person = {
   name: string;
@@ -33,10 +35,12 @@ export default function PeopleScreen() {
 
   function renderPeopleRow(person: Person) {
     return (
-      <Flex
-        sx={{
-          width: ["100%", "50%", "33%"],
-          marginTop: 10,
+      <Card
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
         }}
       >
         <Box
@@ -78,7 +82,7 @@ export default function PeopleScreen() {
           </H4>
           <H5
             style={{
-              marginTop: 1,
+              marginTop: 0,
             }}
           >
             {person.role}
@@ -86,13 +90,13 @@ export default function PeopleScreen() {
         </Flex>
         <Button
           sx={{
-            flexGrow: 1,
             alignSelf: "flex-end",
           }}
           onPress={() => setShowModal(person)}
-          title="Learn more"
-        />
-      </Flex>
+        >
+          <Text>View</Text>
+        </Button>
+      </Card>
     );
   }
 
@@ -100,7 +104,27 @@ export default function PeopleScreen() {
 
   return (
     <>
-      <View
+      <Modal
+        visible={showModal != false}
+        animationType="fade"
+        transparent={true}
+        onRequestClose={() => setShowModal(false)}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Hello World!</Text>
+
+            <Button
+              onPress={() => {
+                setShowModal(false);
+              }}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Button>
+          </View>
+        </View>
+      </Modal>
+      <ScrollView
         sx={{
           backgroundColor: "white",
           display: "flex",
@@ -116,7 +140,46 @@ export default function PeopleScreen() {
         >
           {peopleData.map(renderPeopleRow)}
         </Flex>
-      </View>
+      </ScrollView>
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  openButton: {
+    backgroundColor: "#F194FF",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+  },
+});
