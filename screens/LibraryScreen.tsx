@@ -72,7 +72,7 @@ function LibraryRootScreen({ route, navigation }) {
           sx={{
             flexWrap: "wrap",
             flex: 1,
-            justifyContent: "center",
+            justifyContent: "flex-start",
           }}
         >
           {folder.children.map((file) => (
@@ -102,7 +102,7 @@ function LibraryRootScreen({ route, navigation }) {
         sx={{
           flexWrap: "wrap",
           flex: 1,
-          justifyContent: "center",
+          justifyContent: "flex-start",
         }}
       >
         {MOCK_LIBRARY_DATA.map((folder) => (
