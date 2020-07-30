@@ -1,7 +1,6 @@
 import * as React from "react";
-import { StyleSheet, Button } from "react-native";
 import Markdown from "react-native-markdown-renderer";
-import { Flex, Box, ScrollView } from "dripsy";
+import { Flex, Box, ScrollView, Button } from "dripsy";
 
 import { Text, View } from "../components/Themed";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -36,7 +35,7 @@ function LibraryFileScreen({ route, navigation }) {
 
   return (
     <ScrollView>
-      <View style={styles.container}>
+      <View>
         <View>
           <Button
             onPress={() => {
@@ -57,7 +56,7 @@ function LibraryRootScreen({ route, navigation }) {
   if (folder !== null) {
     return (
       <ScrollView>
-        <View style={styles.container}>
+        <View>
           <View>
             <Button
               onPress={() => {
@@ -138,21 +137,3 @@ function LibraryRootScreen({ route, navigation }) {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 8,
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});

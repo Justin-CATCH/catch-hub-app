@@ -8,6 +8,9 @@ import Navigation from "./navigation";
 import { ThemeProvider } from "dripsy";
 import { theme } from "./theme";
 import { Provider as PaperProvider, Portal } from "react-native-paper";
+import { Provider as ReduxProvider } from "react-redux";
+import { store, doSomething } from "./store";
+import { Button } from "react-native";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -17,14 +20,16 @@ export default function App() {
     return null;
   } else {
     return (
-      <PaperProvider>
-        <ThemeProvider theme={theme}>
-          <SafeAreaProvider>
-            <Navigation colorScheme={colorScheme} />
-            <StatusBar />
-          </SafeAreaProvider>
-        </ThemeProvider>
-      </PaperProvider>
+      <ReduxProvider store={store}>
+        <PaperProvider>
+          <ThemeProvider theme={theme}>
+            <SafeAreaProvider>
+              <Navigation colorScheme={colorScheme} />
+              <StatusBar />
+            </SafeAreaProvider>
+          </ThemeProvider>
+        </PaperProvider>
+      </ReduxProvider>
     );
   }
 }

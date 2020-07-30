@@ -1,11 +1,14 @@
 import * as React from "react";
-import { StyleSheet } from "react-native";
-import { ScrollView, Flex, Box, View } from "dripsy";
 import { Card } from "react-native-paper";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { theme } from "../theme";
+import { ScrollView, Flex, Box, Text, View } from "dripsy";
+import { useDispatch } from "react-redux";
+import { doSomething } from "../store";
 
 export default function HomeScreen() {
+  const dispatch = useDispatch();
+
   return (
     <View
       sx={{
