@@ -8,6 +8,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { MOCK_LIBRARY_DATA } from "../mock-data";
 import { theme } from "../theme";
 import { Card } from "react-native-paper";
+import { WebView } from "react-native-webview";
 
 const Stack = createStackNavigator();
 
@@ -80,6 +81,9 @@ function LibraryRootScreen({ route, navigation }) {
               key={file.name}
               folder={file}
               onPress={() => {
+                if (file.type === "video") {
+                  return;
+                }
                 navigation.navigate("library-file", { url: file.url });
               }}
             />
@@ -123,7 +127,7 @@ type FolderProps = {
 };
 
 const Folder = ({ folder, onPress }) => {
-  return (
+  if (folder.type === "video") {
     <Box
       key={folder.name}
       sx={{
@@ -132,13 +136,41 @@ const Folder = ({ folder, onPress }) => {
       }}
     >
       <Card elevation={2} onPress={onPress}>
-        <Card.Cover
+        <WebView
           style={{
-            backgroundColor: "white",
+            height: 100,
           }}
-          source={icons[folder.icon]}
+          source={{ uri: folder.url }} // Can be a URL or a local file.
         />
         <Card.Content>
+          <Text
+            style={{
+              textAlign: "center",
+            }}
+          >
+            {folder.name}
+          </Text>
+        </Card.Content>
+      </Card>
+    </Box>;
+  }
+
+  return (
+    <Box
+      key={folder.name}
+      sx={{
+        padding: 2,
+        width: ["50%", "30%"],
+      }}
+    >
+      <Card elevation={2} onPress={onPress} style={{ display: "flex" }}>
+        <Card.Content style={{ display: "flex" }}>
+          <Card.Cover
+            style={{
+              backgroundColor: "white",
+            }}
+            source={icons[folder.icon]}
+          />
           <Text
             style={{
               textAlign: "center",

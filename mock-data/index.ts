@@ -1,7 +1,24 @@
 export const MOCK_LIBRARY_DATA = [
   {
     name: "Brown Bags",
-    children: [],
+    children: [
+      {
+        name: "Introducing React Native",
+        url: "https://www.youtube.com/embed/KVZ-P-ZI6W4",
+        type: "video",
+      },
+      {
+        name: "Firebase - Back to the Basic",
+        url: "https://www.youtube.com/embed/q5J5ho7YUhA",
+        type: "video",
+      },
+      {
+        name: "Flutter for the JS Developer",
+        type: "video",
+        url:
+          "https://www.youtube.com/embed/q5J5ho7YUhAhttps://www.youtube.com/embed/7sJZi0grFR4",
+      },
+    ],
     icon: "brown-bag",
   },
   {
