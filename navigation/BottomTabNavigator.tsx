@@ -64,7 +64,13 @@ function LibraryNavigator() {
       <LibraryStack.Screen
         name="LibraryScreen"
         component={LibraryScreen}
-        options={{ headerTitle: "Library" }}
+        options={{
+          headerTitle: "Library",
+          headerTintColor: "white",
+          headerStyle: {
+            backgroundColor: theme.colors.primary,
+          },
+        }}
       />
     </LibraryStack.Navigator>
   );
@@ -78,7 +84,13 @@ function MeNavigator() {
       <MeStack.Screen
         name="MeScreen"
         component={MeScreen}
-        options={{ headerTitle: "Library" }}
+        options={{
+          headerTitle: "Me",
+          headerTintColor: "white",
+          headerStyle: {
+            backgroundColor: theme.colors.primary,
+          },
+        }}
       />
     </MeStack.Navigator>
   );

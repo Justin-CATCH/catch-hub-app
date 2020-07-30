@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ScrollView, Flex } from "dripsy";
+import { Ionicons } from "@expo/vector-icons";
 import {
   Button,
   ActivityIndicator,
@@ -7,6 +8,8 @@ import {
   Avatar,
   Text,
   Searchbar,
+  TouchableRipple,
+  IconButton,
 } from "react-native-paper";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { dbInstance } from "../db";
@@ -15,33 +18,29 @@ import { theme } from "../theme";
 import { Person } from "../types";
 import { PersonModal } from "../components/PersonModal";
 
-export default function PeopleScreen() {
-  const [people, loading] = useCollection(dbInstance.collection("people"));
-
-  const [visible, setVisible] = React.useState(false);
-
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const [modalPerson, setModalPerson] = useState<Person | undefined>(undefined);
-
-  const [searchTerm, setSearchTerm] = useState("");
-
-  function renderPeopleRow(person: Person) {
-    return (
-      <Card
-        key={person.name}
-        elevation={2}
-        style={{
-          width: "100%",
-          marginTop: 10,
+export function renderPeopleRow(
+  person: Person,
+  showModal: (show: boolean) => void,
+  setModalPerson: (person: Person) => void
+) {
+  return (
+    <Card
+      key={person.name}
+      elevation={2}
+      style={{
+        width: "100%",
+        marginTop: 10,
+      }}
+    >
+      <TouchableRipple
+        onPress={() => {
+          showModal();
+          setModalPerson(person);
         }}
       >
         <Card.Content
           style={{
-            paddingTop: 8,
-            paddingBottom: 8,
-            paddingLeft: 8,
-            paddingRight: 8,
+            padding: 10,
             width: "100%",
             display: "flex",
             flexDirection: "row",
@@ -76,17 +75,24 @@ export default function PeopleScreen() {
             sx={{
               justifySelf: "center",
             }}
-            onPress={() => {
-              showModal();
-              setModalPerson(person);
-            }}
           >
-            <Text>View</Text>
+            <Ionicons name="ios-eye" size={28} />
           </Button>
         </Card.Content>
-      </Card>
-    );
-  }
+      </TouchableRipple>
+    </Card>
+  );
+}
+
+export default function PeopleScreen() {
+  const [people, loading] = useCollection(dbInstance.collection("people"));
+
+  const [visible, setVisible] = React.useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const [modalPerson, setModalPerson] = useState<Person | undefined>(undefined);
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   const peopleData = people?.docs?.map((doc) => doc.data()) || [];
   const filteredPeopleData = searchTerm
@@ -134,7 +140,9 @@ export default function PeopleScreen() {
               flexWrap: "wrap",
             }}
           >
-            {filteredPeopleData.map(renderPeopleRow)}
+            {filteredPeopleData.map((person) =>
+              renderPeopleRow(person, showModal, setModalPerson)
+            )}
           </Flex>
         )}
       </ScrollView>

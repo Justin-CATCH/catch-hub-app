@@ -9,37 +9,37 @@ export const MOCK_LIBRARY_DATA = [
     icon: "brown-bag",
     children: [
       {
-        icon: 'file',
+        icon: "file",
         name: "component-library.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/component-library.md?r=raw",
       },
       {
-        icon: 'file',
+        icon: "file",
         name: "design-system.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/design-system.md?r=raw",
       },
       {
-        icon: 'file',
+        icon: "file",
         name: "general-architecture.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/general-architecture.md?r=raw",
       },
       {
-        icon: 'file',
+        icon: "file",
         name: "monorepo.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/monorepo.md?r=raw",
       },
       {
-        icon: 'file',
+        icon: "file",
         name: "tech-stack.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/tech-stack.md?r=raw",
       },
       {
-        icon: 'file',
+        icon: "file",
         name: "testing-strategies.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/frontend/testing-strategies.md?r=raw",
@@ -51,19 +51,19 @@ export const MOCK_LIBRARY_DATA = [
     icon: "brown-bag",
     children: [
       {
-        icon: 'file',
+        icon: "file",
         name: "coding-style.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/backend/coding-style.md?r=raw",
       },
       {
-        icon: 'file',
+        icon: "file",
         name: "exceptions.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/backend/exceptions.md?r=raw",
       },
       {
-        icon: 'file',
+        icon: "file",
         name: "schema-design.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/backend/schema-design.md?r=raw",
@@ -75,7 +75,7 @@ export const MOCK_LIBRARY_DATA = [
     icon: "brown-bag",
     children: [
       {
-        icon: 'file',
+        icon: "file",
         name: "structure.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/microservices/structure.md?r=raw",
@@ -87,25 +87,25 @@ export const MOCK_LIBRARY_DATA = [
     icon: "brown-bag",
     children: [
       {
-        icon: 'file',
+        icon: "file",
         name: "dashboards.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/monitoring/dashboards.md?r=raw",
       },
       {
-        icon: 'file',
+        icon: "file",
         name: "monolog.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/monitoring/monolog.md?r=raw",
       },
       {
-        icon: 'file',
+        icon: "file",
         name: "rollbar.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/monitoring/rollbar.md?r=raw",
       },
       {
-        icon: 'file',
+        icon: "file",
         name: "scaylr.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/monitoring/scaylr.md?r=raw",
@@ -117,13 +117,13 @@ export const MOCK_LIBRARY_DATA = [
     icon: "brown-bag",
     children: [
       {
-        icon: 'file',
+        icon: "file",
         name: "security-basics-1.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/security/security-basics-1.md?r=raw",
       },
       {
-        icon: 'file',
+        icon: "file",
         name: "security-basics-2.md",
         url:
           "https://api.docs.cgws.com.au/services/knowledge-base/branches/catch-hub-app/files/docs/topics/security/security-basics-2.md?r=raw",
@@ -165,6 +165,7 @@ export const ONBOARDING_MOCK_DATA = {
     title: "Frontend",
     days: [
       {
+        id: 1,
         description:
           "Welcome to your first day at Catch! We hope that this will be both a pleasant and exciting place to work. Today you will:",
         tasks: [
@@ -183,6 +184,7 @@ export const ONBOARDING_MOCK_DATA = {
         ],
       },
       {
+        id: 2,
         description:
           "Today you will start on your engineering journey at Catch:",
         tasks: [
@@ -194,6 +196,7 @@ export const ONBOARDING_MOCK_DATA = {
         ],
       },
       {
+        id: 3,
         description:
           "Today you will deep dive on how we do frontend development at Catch.",
         tasks: [
@@ -205,6 +208,7 @@ export const ONBOARDING_MOCK_DATA = {
         ],
       },
       {
+        id: 4,
         description: `Today, let's start seeing the code and making Catch frontend accessible on your local machine 💪.`,
         tasks: [
           { text: "Set up your frontend monorepo" },
@@ -215,6 +219,7 @@ export const ONBOARDING_MOCK_DATA = {
       },
 
       {
+        id: 5,
         description: `'Let's get your hand dirty today.`,
         tasks: [
           {
