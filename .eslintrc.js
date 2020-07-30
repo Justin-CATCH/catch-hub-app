@@ -20,5 +20,6 @@ module.exports = {
   },
   rules: {
     "prettier/prettier": "error",
+    "react-native/no-inline-styles": "none",
   },
 };
