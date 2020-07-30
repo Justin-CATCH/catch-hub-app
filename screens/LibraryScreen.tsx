@@ -62,7 +62,14 @@ function LibraryRootScreen({ route, navigation }) {
 
   if (folder !== null) {
     return (
-      <ScrollView>
+      <ScrollView
+        sx={{
+          backgroundColor: theme.colors.backgroundColor,
+          display: "flex",
+          flex: 1,
+          px: 15,
+        }}
+      >
         <Button
           onPress={() => {
             setFolder(null);
@@ -183,8 +190,11 @@ const Folder = ({ folder, onPress }) => {
             source={icons[folder.icon]}
           />
           <Text
+            textBreakStrategy="highQuality"
+            lineBreakMode="clip"
             style={{
               textAlign: "center",
+              wordWrap: "break-word",
             }}
           >
             {folder.name}
