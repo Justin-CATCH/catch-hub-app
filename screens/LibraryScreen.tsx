@@ -93,12 +93,16 @@ function LibraryFolderScreen({ route, navigation }) {
         flex: 1,
         px: 15,
       }}
+      contentContainerStyle={{
+        justifyContent: "center",
+      }}
     >
       <Flex
         sx={{
           flexWrap: "wrap",
           flex: 1,
-          justifyContent: "center",
+          justifyContent: "flex-start",
+          maxWidth: 800,
         }}
       >
         {folder.children.map((file) => (
@@ -191,7 +195,7 @@ const Folder = ({ folder, onPress }) => {
         <Card.Content>
           <Flex
             sx={{
-              justifyContent: "flex-start",
+              justifyContent: "center",
             }}
           >
             <Image
