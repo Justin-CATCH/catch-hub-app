@@ -18,11 +18,11 @@ export const MOCK_LIBRARY_DATA = [
         url: "https://www.youtube.com/embed/q5J5ho7YUhA",
       },
     ],
-    icon: "brown-bag",
+    icon: "folder",
   },
   {
     name: "Frontend",
-    icon: "brown-bag",
+    icon: "folder",
     children: [
       {
         icon: "file",
@@ -64,7 +64,7 @@ export const MOCK_LIBRARY_DATA = [
   },
   {
     name: "Backend",
-    icon: "brown-bag",
+    icon: "folder",
     children: [
       {
         icon: "file",
@@ -88,7 +88,7 @@ export const MOCK_LIBRARY_DATA = [
   },
   {
     name: "Microservices",
-    icon: "brown-bag",
+    icon: "folder",
     children: [
       {
         icon: "file",
@@ -100,7 +100,7 @@ export const MOCK_LIBRARY_DATA = [
   },
   {
     name: "Monitoring",
-    icon: "brown-bag",
+    icon: "folder",
     children: [
       {
         icon: "file",
@@ -130,7 +130,7 @@ export const MOCK_LIBRARY_DATA = [
   },
   {
     name: "Security",
-    icon: "brown-bag",
+    icon: "folder",
     children: [
       {
         icon: "file",

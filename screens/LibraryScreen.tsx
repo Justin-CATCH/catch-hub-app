@@ -12,12 +12,14 @@ import { MOCK_LIBRARY_DATA } from "../mock-data";
 import { theme } from "../theme";
 import { Card } from "react-native-paper";
 import { WebView } from "react-native-webview";
+import { Image } from "react-native";
 
 const Stack = createStackNavigator();
 
 const icons = {
   "brown-bag": require(`../icons/brown-bag.png`),
   file: require(`../icons/file.png`),
+  folder: require(`../icons/folder.jpg`),
 };
 
 export default () => {
@@ -190,11 +192,24 @@ const Folder = ({ folder, onPress }) => {
           <Card.Cover
             style={{
               height: 48,
-              backgroundColor: "white",
+              // backgroundColor: "white",
               // marginRight: 8,
             }}
             source={icons[folder.icon]}
           />
+          {/* <View>
+            <Image
+              style={{
+                height: 48,
+                maxWidth: "100%",
+                backgroundColor: "white",
+
+                // marginRight: 8,
+              }}
+              source={icons[folder.icon]}
+            />
+          </View> */}
+
           <Text
             style={{
               height: 34,
