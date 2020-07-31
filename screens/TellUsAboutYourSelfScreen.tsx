@@ -11,7 +11,7 @@ export default function TellMeAboutYourSelfScreen({ navigation }) {
   return (
     <View
       sx={{
-        backgroundColor: theme.colors.backgroundColor,
+        backgroundColor: theme.colors.tertiary,
         display: "flex",
         flex: 1,
         px: 15,
@@ -19,6 +19,14 @@ export default function TellMeAboutYourSelfScreen({ navigation }) {
         justifyContent: "center",
       }}
     >
+      <Image
+        resizeMode="contain"
+        style={{
+          width: 200,
+          height: 200,
+        }}
+        source={require("../icons/catch-logo.png")}
+      />
       <Headline>Tell us about yourself</Headline>
       <Flex
         sx={{
@@ -55,6 +63,7 @@ export default function TellMeAboutYourSelfScreen({ navigation }) {
         </Flex>
         <Flex
           sx={{
+            flexDirection: "column",
             marginTop: 2,
           }}
         >
@@ -65,35 +74,46 @@ export default function TellMeAboutYourSelfScreen({ navigation }) {
             placeholder="Select your position"
             label="Your position"
             value={position}
-            onFocus={() => {
+            disabled={true}
+            onTouchStart={() => {
+              setMenuVisible(true);
+            }}
+            onClick={() => {
               setMenuVisible(true);
             }}
           />
           <Menu
             visible={menuVisible}
             onDismiss={() => setMenuVisible(false)}
-            anchor={<Text sx={{ color: theme.colors.backgroundColor }}>a</Text>}
+            anchor={<Text sx={{ color: theme.colors.tertiary }}>a</Text>}
           >
             <Menu.Item
               onPress={() => {
-                setPosition("item 1");
+                setPosition("Backend Developer");
                 setMenuVisible(false);
               }}
-              title="Item 1"
+              title="Backend Developer"
             />
             <Menu.Item
               onPress={() => {
-                setPosition("item 2");
+                setPosition("Frontend Developer");
                 setMenuVisible(false);
               }}
-              title="Item 2"
+              title="Frontend Developer"
             />
             <Menu.Item
               onPress={() => {
-                setPosition("item 3");
+                setPosition("UX/UI Designer");
                 setMenuVisible(false);
               }}
-              title="Item 3"
+              title="UX/UI Designer"
+            />
+            <Menu.Item
+              onPress={() => {
+                setPosition("Business Intelligence");
+                setMenuVisible(false);
+              }}
+              title="Business Intelligence"
             />
           </Menu>
         </Flex>

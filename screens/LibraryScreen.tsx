@@ -98,7 +98,7 @@ function LibraryFolderScreen({ route, navigation }) {
         sx={{
           flexWrap: "wrap",
           flex: 1,
-          justifyContent: "flex-start",
+          justifyContent: "center",
         }}
       >
         {folder.children.map((file) => (
@@ -125,14 +125,13 @@ function LibraryRootScreen({ route, navigation }) {
         backgroundColor: theme.colors.backgroundColor,
         display: "flex",
         flex: 1,
-        px: 15,
       }}
     >
       <Flex
         sx={{
           flexWrap: "wrap",
           flex: 1,
-          justifyContent: "flex-start",
+          justifyContent: "center",
         }}
       >
         {MOCK_LIBRARY_DATA.map((folder) => (
@@ -148,11 +147,6 @@ function LibraryRootScreen({ route, navigation }) {
     </ScrollView>
   );
 }
-
-type FolderProps = {
-  folder: any;
-  onPress: any;
-};
 
 const Folder = ({ folder, onPress }) => {
   if (folder.type === "video") {
@@ -189,7 +183,7 @@ const Folder = ({ folder, onPress }) => {
     <Box
       key={folder.name}
       sx={{
-        padding: 2,
+        padding: 15,
         width: ["50%", "30%"],
       }}
     >

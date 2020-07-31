@@ -113,14 +113,13 @@ export default function PeopleScreen() {
           backgroundColor: theme.colors.backgroundColor,
           display: "flex",
           flex: 1,
-          px: 15,
+          p: 15,
         }}
       >
         <Searchbar
           placeholder="Search by name"
           value={searchTerm}
           onChangeText={setSearchTerm}
-          style={{ marginTop: 10 }}
         />
         {loading ? (
           <Flex

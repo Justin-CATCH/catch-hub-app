@@ -83,15 +83,16 @@ export default function HomeScreen() {
       >
         <Headline
           style={{
-            marginTop: 20,
+            marginTop: 40,
           }}
         >
-          G'day Justin
+          G'day Batman
         </Headline>
 
         <Text
           sx={{
-            marginTop: 15,
+            marginTop: 10,
+            marginBottom: 2,
             fontWeight: "500",
           }}
         >
@@ -101,7 +102,7 @@ export default function HomeScreen() {
           <SwipeCards
             cards={ONBOARDING_MOCK_DATA.frontend.days}
             yupText={"👍"}
-            nopeText={"😱"}
+            nopeText={"⏭"}
             containerStyle={{
               display: "flex",
               flex: 1,
@@ -127,13 +128,14 @@ export default function HomeScreen() {
           Topic of the day
         </Text>
 
+        {renderTopicOfTheDay()}
         <Text
           sx={{
             marginTop: 15,
             fontWeight: "500",
           }}
         >
-          Let's meet someone today
+          Meet someone today
         </Text>
         <Flex>
           <SwipeCards
@@ -165,6 +167,62 @@ export default function HomeScreen() {
         autoStart={false}
       />
     </>
+  );
+}
+
+function renderTopicOfTheDay() {
+  function onPressHandler() {}
+  return (
+    <TouchableRipple onPress={onPressHandler}>
+      <Card
+        elevation={2}
+        style={{
+          width: "100%",
+          marginTop: 10,
+        }}
+      >
+        <TouchableRipple onPress={() => {}}>
+          <Card.Content
+            style={{
+              padding: 10,
+              width: "100%",
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              alignItems: "center",
+            }}
+          >
+            <Avatar.Image size={80} source={require("../icons/security.png")} />
+            <Flex
+              sx={{
+                flexBasis: 200,
+                flexDirection: "column",
+                pl: 15,
+                flexGrow: 2,
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                style={{
+                  fontWeight: "bold",
+                }}
+              >
+                Security
+              </Text>
+              <Text>
+                Security takes absolute priority at Catch, and we must be
+                exceptionally diligent to protect our customer's private
+                information and defend against malicious attacks on our code and
+                infrastructure.
+              </Text>
+            </Flex>
+          </Card.Content>
+        </TouchableRipple>
+        <Card.Actions style={{ justifyContent: "flex-end" }}>
+          <Button onPress={onPressHandler}>Learn more</Button>
+        </Card.Actions>
+      </Card>
+    </TouchableRipple>
   );
 }
 

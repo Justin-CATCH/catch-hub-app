@@ -1,6 +1,6 @@
 export const MOCK_LIBRARY_DATA = [
   {
-    name: "Brown Bags",
+    name: "Brown Bags & Ideas",
     children: [
       {
         name: "Introducing React Native",

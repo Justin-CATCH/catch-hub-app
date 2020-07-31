@@ -118,15 +118,15 @@ export default function MeScreen() {
   const modalPerson: Person = {
     askAbout: "Talk about cats",
     bio:
-      "Leeroy Jenkins is the name of a player character created by Ben Schulz in Blizzard Entertainment's MMORPG World of Warcraft. The character became popular in 2005 from his role in a viral video of game footage where, having been absent during his group's discussion of a meticulous plan, Leeroy returns and ruins it by charging straight into combat shouting his own name. The character became an Internet meme.",
+      "Batman originated from an incident in Bruce's childhood; after witnessing the murder of his parents Dr. Thomas Wayne and Martha Wayne, he swore vengeance against criminals, an oath tempered by a sense of justice. Bruce trains himself physically and intellectually and crafts a bat-inspired persona to fight crime.",
     birthday: "25",
-    email: "leeroy.jenkins@gmail.com",
-    github: "leeroyperson",
+    email: "batman@gmail.com",
+    github: "batmanatcatch",
     joined: "25",
-    name: "Leeroy Jenkins",
+    name: "Batman",
     photo: "",
     role: "Feeder",
-    slack: "@leeroy",
+    slack: "@batman",
   };
 
   return (
@@ -139,7 +139,14 @@ export default function MeScreen() {
         visible={taskModal}
       />
 
-      <ScrollView>
+      <ScrollView
+        sx={{
+          backgroundColor: theme.colors.backgroundColor,
+          display: "flex",
+          flex: 1,
+          p: 10,
+        }}
+      >
         <Card style={styles.container}>
           <Card.Title
             title={modalPerson?.name}
@@ -158,7 +165,8 @@ export default function MeScreen() {
               <Avatar.Image
                 size={80}
                 source={{
-                  uri: modalPerson?.photo || faker.image.avatar(),
+                  uri:
+                    "https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png",
                 }}
               />
               <Box>
@@ -257,12 +265,14 @@ export default function MeScreen() {
           </Card.Content>
         </Card>
 
-        <View style={{ marginTop: 20 }} />
+        <View style={{ marginTop: 10 }} />
 
         {renderDayCard({
           day: DAY,
           progress: 72,
         })}
+
+        <View style={{ paddingBottom: 20 }} />
       </ScrollView>
     </React.Fragment>
   );
