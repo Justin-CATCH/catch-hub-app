@@ -1,7 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  HeaderBackButton,
+} from "@react-navigation/stack";
 import * as React from "react";
+import { Button } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -65,7 +69,8 @@ function LibraryNavigator() {
         name="LibraryScreen"
         component={LibraryScreen}
         options={{
-          headerTitle: "Library",
+          headerShown: false,
+          headerTitle: "Library!!",
           headerTintColor: "white",
           headerStyle: {
             backgroundColor: theme.colors.primary,

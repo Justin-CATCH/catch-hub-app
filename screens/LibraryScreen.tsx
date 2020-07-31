@@ -3,7 +3,10 @@ import Markdown from "react-native-markdown-renderer";
 import { Flex, Box, ScrollView, Button } from "dripsy";
 
 import { Text, View } from "../components/Themed";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  HeaderBackButton,
+} from "@react-navigation/stack";
 
 import { MOCK_LIBRARY_DATA } from "../mock-data";
 import { theme } from "../theme";
@@ -20,86 +23,89 @@ const icons = {
 export default () => {
   return (
     <Stack.Navigator
-      initialRouteName="Root"
-      screenOptions={{ headerShown: false }}
+      initialRouteName="library-root"
+      screenOptions={{
+        headerTitle: "Library",
+        headerStyle: {
+          backgroundColor: theme.colors.primary,
+        },
+        headerBackTitle: "Back",
+        headerTintColor: "white",
+        headerLeft: (props) => {
+          if (!props.canGoBack) {
+            return null;
+          }
+
+          return <HeaderBackButton {...props} tintColor="white" />;
+        },
+      }}
     >
-      <Stack.Screen name="library-folder" component={LibraryRootScreen} />
       <Stack.Screen name="library-file" component={LibraryFileScreen} />
+      <Stack.Screen name="library-folder" component={LibraryFolderScreen} />
+      <Stack.Screen name="library-root" component={LibraryRootScreen} />
     </Stack.Navigator>
   );
 };
 
 function LibraryFileScreen({ route, navigation }) {
-  const [file, setFile] = React.useState(null);
+  const [file, setFile] = React.useState("");
 
   React.useEffect(() => {
     fetch(route.params.url)
-      .then((res) => res.text())
+      .then((res) => {
+        return res.text();
+      })
       .then((md) => {
         setFile(md);
       });
-  });
+  }, []);
 
   return (
     <ScrollView>
-      <View style={{ paddingLeft: 12 }}>
-        <View>
-          <Button
-            onPress={() => {
-              navigation.goBack();
-            }}
-            title="Back"
-          />
-        </View>
+      <View style={{ padding: 12 }}>
         <Markdown>{file}</Markdown>
       </View>
     </ScrollView>
   );
 }
 
-function LibraryRootScreen({ route, navigation }) {
-  const [folder, setFolder] = React.useState(null);
+function LibraryFolderScreen({ route, navigation }) {
+  const folder = route.params.folder;
 
-  if (folder !== null) {
-    return (
-      <ScrollView
+  return (
+    <ScrollView
+      sx={{
+        backgroundColor: theme.colors.backgroundColor,
+        display: "flex",
+        flex: 1,
+        px: 15,
+      }}
+    >
+      <Flex
         sx={{
-          backgroundColor: theme.colors.backgroundColor,
-          display: "flex",
+          flexWrap: "wrap",
           flex: 1,
-          px: 15,
+          justifyContent: "flex-start",
         }}
       >
-        <Button
-          onPress={() => {
-            setFolder(null);
-          }}
-          title="Back"
-        />
-        <Flex
-          sx={{
-            flexWrap: "wrap",
-            flex: 1,
-            justifyContent: "flex-start",
-          }}
-        >
-          {folder.children.map((file) => (
-            <Folder
-              key={file.name}
-              folder={file}
-              onPress={() => {
-                if (file.type === "video") {
-                  return;
-                }
-                navigation.navigate("library-file", { url: file.url });
-              }}
-            />
-          ))}
-        </Flex>
-      </ScrollView>
-    );
-  }
+        {folder.children.map((file) => (
+          <Folder
+            key={file.name}
+            folder={file}
+            onPress={() => {
+              if (file.type === "video") {
+                return;
+              }
+              navigation.push("library-file", { url: file.url });
+            }}
+          />
+        ))}
+      </Flex>
+    </ScrollView>
+  );
+}
 
+function LibraryRootScreen({ route, navigation }) {
   return (
     <ScrollView
       sx={{
@@ -120,7 +126,7 @@ function LibraryRootScreen({ route, navigation }) {
           <Folder
             key={folder.name}
             folder={folder}
-            onPress={() => setFolder(folder)}
+            onPress={() => navigation.push("library-folder", { folder })}
           />
         ))}
       </Flex>
@@ -176,25 +182,25 @@ const Folder = ({ folder, onPress }) => {
         <Card.Content
           style={{
             display: "flex",
-            justifyContent: "flex-start",
-            flexDirection: "row",
+            justifyContent: "center",
+            flexDirection: "column",
             alignItems: "center",
           }}
         >
           <Card.Cover
             style={{
-              height: 50,
+              height: 48,
               backgroundColor: "white",
-              marginRight: 12,
+              // marginRight: 8,
             }}
             source={icons[folder.icon]}
           />
           <Text
-            textBreakStrategy="highQuality"
-            lineBreakMode="clip"
             style={{
+              height: 34,
+              width: "100%",
+              flexShrink: 1,
               textAlign: "center",
-              wordWrap: "break-word",
             }}
           >
             {folder.name}
