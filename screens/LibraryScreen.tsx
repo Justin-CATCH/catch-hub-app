@@ -191,7 +191,7 @@ const Folder = ({ folder, onPress }) => {
         <Card.Content>
           <Flex
             sx={{
-              justifyContent: "center",
+              justifyContent: "flex-start",
             }}
           >
             <Image
@@ -200,7 +200,7 @@ const Folder = ({ folder, onPress }) => {
                 width: 100,
                 resizeMode: "contain",
               }}
-              source={icons[folder.icon]}
+              source={icons[folder.icon] || icons.file}
             />
           </Flex>
           <Text
