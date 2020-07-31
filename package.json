@@ -50,6 +50,7 @@
     "react-native-web": "~0.11.7",
     "react-native-web-webview": "^1.0.1",
     "react-native-webview": "^10.3.3",
+    "react-native-wizard": "^2.1.0",
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",

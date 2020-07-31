@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { Person } from "../types";
+import React, { useState, useEffect } from "react";
 import { Flex, Box } from "dripsy";
-import { Ionicons } from "@expo/vector-icons";
 import {
   Modal,
   Portal,
@@ -12,7 +10,6 @@ import {
   Checkbox,
   Button,
 } from "react-native-paper";
-import { Linking } from "react-native";
 
 export const TasksModal: React.FC<{
   visible: boolean;
@@ -23,9 +20,15 @@ export const TasksModal: React.FC<{
 
   function toggleComplete(idx: number) {
     const mutatedTasks = [...currentTasks];
-    mutatedTasks[idx].completed = !mutatedTasks[idx]?.completed;
+    mutatedTasks[idx].completed = mutatedTasks[idx]?.completed ? false : true;
     setCurrentTasks(mutatedTasks);
   }
+
+  useEffect(() => {
+    if (tasks) {
+      setCurrentTasks(tasks);
+    }
+  }, [tasks]);
 
   return (
     <Portal>

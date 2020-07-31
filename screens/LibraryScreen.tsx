@@ -19,6 +19,11 @@ const Stack = createStackNavigator();
 const icons = {
   "brown-bag": require(`../icons/brown-bag.png`),
   file: require(`../icons/file.png`),
+  frontend: require(`../icons/frontend.png`),
+  backend: require(`../icons/backend.png`),
+  microservices: require(`../icons/microservices.png`),
+  data: require(`../icons/data.png`),
+  security: require(`../icons/security.png`),
   folder: require(`../icons/folder.jpg`),
 };
 
@@ -74,6 +79,12 @@ function LibraryFileScreen({ route, navigation }) {
 function LibraryFolderScreen({ route, navigation }) {
   const folder = route.params.folder;
 
+  React.useEffect(() => {
+    navigation.setOptions({
+      headerTitle: folder.name,
+    });
+  }, []);
+
   return (
     <ScrollView
       sx={{
@@ -128,7 +139,9 @@ function LibraryRootScreen({ route, navigation }) {
           <Folder
             key={folder.name}
             folder={folder}
-            onPress={() => navigation.push("library-folder", { folder })}
+            onPress={() => {
+              navigation.push("library-folder", { folder });
+            }}
           />
         ))}
       </Flex>
@@ -181,35 +194,21 @@ const Folder = ({ folder, onPress }) => {
       }}
     >
       <Card elevation={2} onPress={onPress} style={{ display: "flex" }}>
-        <Card.Content
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Card.Cover
-            style={{
-              height: 48,
-              // backgroundColor: "white",
-              // marginRight: 8,
+        <Card.Content>
+          <Flex
+            sx={{
+              justifyContent: "center",
             }}
-            source={icons[folder.icon]}
-          />
-          {/* <View>
+          >
             <Image
               style={{
-                height: 48,
-                maxWidth: "100%",
-                backgroundColor: "white",
-
-                // marginRight: 8,
+                height: 100,
+                width: 100,
+                resizeMode: "contain",
               }}
               source={icons[folder.icon]}
             />
-          </View> */}
-
+          </Flex>
           <Text
             style={{
               height: 34,

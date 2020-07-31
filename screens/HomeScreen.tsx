@@ -43,7 +43,6 @@ export default function HomeScreen() {
   const showPersonModal = () => setPersonModal(true);
   const hidePersonModal = () => setPersonModal(false);
   const [modalPerson, setModalPerson] = useState<Person | undefined>(undefined);
-  const [scrollEnabled, setScrollEnabled] = useState(true);
 
   // Tasks
   const [progress, setProgress] = useState(0);
@@ -72,7 +71,8 @@ export default function HomeScreen() {
         visible={taskModal}
       />
       <ScrollView
-        scrollEnabled={scrollEnabled}
+        scrollEnabled={true}
+        disableScrollViewPanResponder={true}
         sx={{
           backgroundColor: theme.colors.backgroundColor,
           display: "flex",
@@ -89,27 +89,6 @@ export default function HomeScreen() {
           G'day Justin
         </Headline>
 
-        <Button
-          onPress={() => {
-            let id = Notifications.scheduleLocalNotificationAsync(
-              {
-                title: "Example Title!",
-                body: "This is the body text of the local notification",
-                web: {
-                  body: "This is the body text of the local notification",
-                },
-                ios: {
-                  sound: true,
-                },
-              },
-              {
-                time: Date.now() + 1000,
-              }
-            );
-          }}
-        >
-          <Text>Send</Text>
-        </Button>
         <Text
           sx={{
             marginTop: 15,
@@ -123,8 +102,6 @@ export default function HomeScreen() {
             cards={ONBOARDING_MOCK_DATA.frontend.days}
             yupText={"👍"}
             nopeText={"😱"}
-            onDragStart={() => setScrollEnabled(false)}
-            onDragRelease={() => setScrollEnabled(true)}
             containerStyle={{
               display: "flex",
               flex: 1,
@@ -163,8 +140,6 @@ export default function HomeScreen() {
             cards={peopleData}
             yupText={"👍"}
             nopeText={"😱"}
-            onDragStart={() => setScrollEnabled(false)}
-            onDragRelease={() => setScrollEnabled(true)}
             containerStyle={{
               display: "flex",
               flex: 1,

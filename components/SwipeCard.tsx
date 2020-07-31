@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import {
   StyleSheet,
   Text,
@@ -10,10 +9,9 @@ import {
   Dimensions,
   Image,
 } from "react-native";
-
 import clamp from "clamp";
-
 import SwipeCardDefault from "./SwipeCardDefault";
+import { theme } from "../theme";
 
 const viewport = Dimensions.get("window");
 const SWIPE_THRESHOLD = 120;
