@@ -91,7 +91,6 @@ function LibraryFolderScreen({ route, navigation }) {
         backgroundColor: theme.colors.backgroundColor,
         display: "flex",
         flex: 1,
-        px: 15,
       }}
       contentContainerStyle={{
         justifyContent: "center",
@@ -158,8 +157,9 @@ const Folder = ({ folder, onPress }) => {
       <Box
         key={folder.name}
         sx={{
-          padding: 2,
+          p: 15,
           width: ["50%", "30%"],
+          color: "black",
         }}
       >
         <Card elevation={2} onPress={onPress}>
@@ -172,6 +172,8 @@ const Folder = ({ folder, onPress }) => {
           <Card.Content>
             <Text
               style={{
+                color: "black",
+                marginTop: 10,
                 textAlign: "center",
               }}
             >
@@ -209,6 +211,7 @@ const Folder = ({ folder, onPress }) => {
           </Flex>
           <Text
             style={{
+              color: "black",
               height: 34,
               width: "100%",
               flexShrink: 1,
