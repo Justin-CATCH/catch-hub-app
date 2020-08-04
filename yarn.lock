@@ -11410,6 +11410,11 @@ react-native-swipe-cards@^0.1.1:
     clamp "^1.0.1"
     prop-types "^15.6.0"
 
+react-native-timeline-flatlist@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/react-native-timeline-flatlist/-/react-native-timeline-flatlist-0.7.3.tgz#5afa69a3901827d2c205900874b2162a4c5ba560"
+  integrity sha512-gpFT/3zm84FRRYp7syObCMAFxorgMRJok9Sl+FPOF1OmvPfTbehsJXKlWL/y1riAG3W8j5s/Q7GCURLl1965yQ==
+
 react-native-video@^4.4.5:
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-4.4.5.tgz#d0db799293f8622c7894dd0f8875cb41bfafbde8"

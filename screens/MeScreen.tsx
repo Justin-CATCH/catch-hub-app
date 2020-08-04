@@ -18,6 +18,7 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { theme } from "../theme";
 import { TasksModal } from "../components/TasksModal";
+import Timeline from "react-native-timeline-flatlist";
 
 const DAY = {
   id: 1,
@@ -271,6 +272,62 @@ export default function MeScreen() {
           day: DAY,
           progress: 72,
         })}
+
+        <View style={{ marginTop: 10 }} />
+
+        <Card
+          style={{
+            backgroundColor: "white",
+            paddingBottom: 12,
+            paddingTop: 12,
+            paddingLeft: 8,
+            paddingRight: 8,
+          }}
+        >
+          <Card.Title
+            sx={{
+              fontWeight: "500",
+            }}
+            title="Career Development"
+          />
+
+          <Timeline
+            innerCircle={"dot"}
+            detailContainerStyle={{
+              marginBottom: 20,
+              paddingLeft: 5,
+              paddingRight: 5,
+              backgroundColor: "#BBDAFF",
+              borderRadius: 10,
+            }}
+            data={[
+              {
+                title: "Frontend Developer",
+                description: `✅ Javascript
+✅ HTML
+✅ CSS
+✅ React`,
+              },
+              {
+                title: "Senior Frontend Developer",
+                lineColor: "grey",
+                description: `✅ Testing
+✅ Accessibility
+✅ Architecture
+✅ Mentoring`,
+              },
+              {
+                title: "Tech Lead",
+                circleColor: "grey",
+                lineColor: "grey",
+                description: `✅ Management
+☑️ Dev Ops
+☑️ Automation
+☑️ React`,
+              },
+            ]}
+          />
+        </Card>
 
         <View style={{ paddingBottom: 20 }} />
       </ScrollView>
