@@ -293,13 +293,6 @@ export default function MeScreen() {
 
           <Timeline
             innerCircle={"dot"}
-            detailContainerStyle={{
-              marginBottom: 20,
-              paddingLeft: 5,
-              paddingRight: 5,
-              backgroundColor: "#BBDAFF",
-              borderRadius: 10,
-            }}
             data={[
               {
                 title: "Frontend Developer",
